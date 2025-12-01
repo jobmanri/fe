@@ -1,0 +1,6 @@
+yarn.lock
+eslint.config.mjs
+tsconfig.*
+.vscode/
+package.*
+.yarn/

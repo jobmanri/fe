@@ -1,0 +1,20 @@
+{
+  "tabWidth": 2,
+  "printWidth": 100,
+
+  "importOrder": [
+    "^react",
+    "<THIRD_PARTY_MODULES>",
+
+    "^(@/app)(.*)$",
+    "^(@/entities)(.*)$",
+    "^(@/features)(.*)$",
+    "^(@/pages)(.*)$",
+    "^(@/shared)(.*)$",
+    "^(@/widgets)(.*)$",
+
+    "^(.*)/(.*)$"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": false
+}

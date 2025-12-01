@@ -31,8 +31,7 @@ globalStyle("b, strong", {
 });
 
 globalStyle("code, kbd, samp, pre", {
-  fontFamily:
-    'ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace',
+  fontFamily: 'ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace',
   fontSize: "1em",
 });
 
