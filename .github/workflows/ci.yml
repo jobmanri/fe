@@ -2,13 +2,9 @@ name: jobmanri-fe CI
 
 on:
     pull_request:
-        branches:
-            - main
-            - develop
+        branches: [main, develop]
     push:
-        branches:
-            - main
-            - develop
+        branches: [main, develop]
     workflow_dispatch:
 
 concurrency:
@@ -16,8 +12,8 @@ concurrency:
     cancel-in-progress: true
 
 jobs:
-    setup:
-        name: Setup
+    quality-check:
+        name: Check Lint & Type
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -27,88 +23,16 @@ jobs:
               uses: actions/setup-node@v6
               with:
                   node-version: "20"
+                  cache: "yarn"
 
             - name: Enable Corepack
               run: corepack enable
-
-            - name: Get yarn cache directory path
-              id: yarn-cache-dir-path
-              run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
-
-            - name: Restore yarn cache
-              uses: actions/cache@v4
-              id: yarn-cache
-              with:
-                  path: |
-                      ${{ steps.yarn-cache-dir-path.outputs.dir }}
-                      .yarn/cache
-                      .yarn/unplugged
-                      .yarn/install-state.gz
-                  key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
-                  restore-keys: |
-                      ${{ runner.os }}-yarn-
 
             - name: Install dependencies
               run: yarn install --immutable
 
-            - name: Upload dependencies artifact
-              uses: actions/upload-artifact@v5
-              with:
-                  name: dependencies
-                  path: |
-                      .yarn/cache
-                      .yarn/unplugged
-                      .yarn/install-state.gz
-                      .pnp.cjs
-                      .pnp.loader.mjs
-                  retention-days: 1
-
-    lint:
-        name: Lint
-        runs-on: ubuntu-latest
-        needs: setup
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v6
-
-            - name: Setup Node.js
-              uses: actions/setup-node@v6
-              with:
-                  node-version: "20"
-
-            - name: Enable Corepack
-              run: corepack enable
-
-            - name: Download dependencies artifact
-              uses: actions/download-artifact@v5
-              with:
-                  name: dependencies
-                  path: .
-
             - name: Run ESLint
               run: yarn lint
-
-    type-check:
-        name: Type Check
-        runs-on: ubuntu-latest
-        needs: setup
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v6
-
-            - name: Setup Node.js
-              uses: actions/setup-node@v6
-              with:
-                  node-version: "20"
-
-            - name: Enable Corepack
-              run: corepack enable
-
-            - name: Download dependencies artifact
-              uses: actions/download-artifact@v5
-              with:
-                  name: dependencies
-                  path: .
 
             - name: Run TypeScript type check
               run: yarn type-check
@@ -116,7 +40,8 @@ jobs:
     build:
         name: Build
         runs-on: ubuntu-latest
-        needs: [lint, type-check]
+
+        needs: quality-check
         steps:
             - name: Checkout code
               uses: actions/checkout@v6
@@ -125,15 +50,13 @@ jobs:
               uses: actions/setup-node@v6
               with:
                   node-version: "20"
+                  cache: "yarn"
 
             - name: Enable Corepack
               run: corepack enable
 
-            - name: Download dependencies artifact
-              uses: actions/download-artifact@v5
-              with:
-                  name: dependencies
-                  path: .
+            - name: Install dependencies
+              run: yarn install --immutable
 
             - name: Build Next.js application
               run: yarn build
