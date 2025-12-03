@@ -1,0 +1,69 @@
+name: jobmanri-fe CI
+
+on:
+    pull_request:
+        branches: [main, develop]
+    push:
+        branches: [main, develop]
+    workflow_dispatch:
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    quality-check:
+        name: Check Lint & Type
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v6
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v6
+              with:
+                  node-version: "20"
+                  cache: "yarn"
+
+            - name: Enable Corepack
+              run: corepack enable
+
+            - name: Install dependencies
+              run: yarn install --immutable
+
+            - name: Run ESLint
+              run: yarn lint
+
+            - name: Run TypeScript type check
+              run: yarn type-check
+
+    build:
+        name: Build
+        runs-on: ubuntu-latest
+
+        needs: quality-check
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v6
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v6
+              with:
+                  node-version: "20"
+                  cache: "yarn"
+
+            - name: Enable Corepack
+              run: corepack enable
+
+            - name: Install dependencies
+              run: yarn install --immutable
+
+            - name: Build Next.js application
+              run: yarn build
+
+            - name: Upload build artifacts
+              uses: actions/upload-artifact@v5
+              with:
+                  name: build-output
+                  path: .next/
+                  retention-days: 7
