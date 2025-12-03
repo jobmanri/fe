@@ -83,6 +83,7 @@ jobs:
               uses: actions/download-artifact@v5
               with:
                   name: dependencies
+                  path: .
 
             - name: Run ESLint
               run: yarn lint
@@ -107,6 +108,7 @@ jobs:
               uses: actions/download-artifact@v5
               with:
                   name: dependencies
+                  path: .
 
             - name: Run TypeScript type check
               run: yarn type-check
@@ -131,6 +133,7 @@ jobs:
               uses: actions/download-artifact@v5
               with:
                   name: dependencies
+                  path: .
 
             - name: Build Next.js application
               run: yarn build
