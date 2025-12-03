@@ -51,16 +51,17 @@ jobs:
             - name: Install dependencies
               run: yarn install --immutable
 
-            - name: Cache dependencies for other jobs
-              uses: actions/cache/save@v4
+            - name: Upload dependencies artifact
+              uses: actions/upload-artifact@v5
               with:
+                  name: dependencies
                   path: |
                       .yarn/cache
                       .yarn/unplugged
                       .yarn/install-state.gz
                       .pnp.cjs
                       .pnp.loader.mjs
-                  key: ${{ runner.os }}-deps-${{ github.sha }}
+                  retention-days: 1
 
     lint:
         name: Lint
@@ -78,19 +79,10 @@ jobs:
             - name: Enable Corepack
               run: corepack enable
 
-            - name: Restore dependencies cache
-              uses: actions/cache/restore@v4
+            - name: Download dependencies artifact
+              uses: actions/download-artifact@v5
               with:
-                  path: |
-                      .yarn/cache
-                      .yarn/unplugged
-                      .yarn/install-state.gz
-                      .pnp.cjs
-                      .pnp.loader.mjs
-                  key: ${{ runner.os }}-deps-${{ github.sha }}
-
-            - name: Install dependencies
-              run: yarn install --immutable
+                  name: dependencies
 
             - name: Run ESLint
               run: yarn lint
@@ -111,19 +103,10 @@ jobs:
             - name: Enable Corepack
               run: corepack enable
 
-            - name: Restore dependencies cache
-              uses: actions/cache/restore@v4
+            - name: Download dependencies artifact
+              uses: actions/download-artifact@v5
               with:
-                  path: |
-                      .yarn/cache
-                      .yarn/unplugged
-                      .yarn/install-state.gz
-                      .pnp.cjs
-                      .pnp.loader.mjs
-                  key: ${{ runner.os }}-deps-${{ github.sha }}
-
-            - name: Install dependencies
-              run: yarn install --immutable
+                  name: dependencies
 
             - name: Run TypeScript type check
               run: yarn type-check
@@ -144,19 +127,10 @@ jobs:
             - name: Enable Corepack
               run: corepack enable
 
-            - name: Restore dependencies cache
-              uses: actions/cache/restore@v4
+            - name: Download dependencies artifact
+              uses: actions/download-artifact@v5
               with:
-                  path: |
-                      .yarn/cache
-                      .yarn/unplugged
-                      .yarn/install-state.gz
-                      .pnp.cjs
-                      .pnp.loader.mjs
-                  key: ${{ runner.os }}-deps-${{ github.sha }}
-
-            - name: Install dependencies
-              run: yarn install --immutable
+                  name: dependencies
 
             - name: Build Next.js application
               run: yarn build
