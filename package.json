@@ -59,10 +59,10 @@
   },
   "packageManager": "yarn@4.12.0",
   "dependenciesMeta": {
-    "vite": {
+    "storybook": {
       "unplugged": true
     },
-    "storybook": {
+    "vite": {
       "unplugged": true
     }
   }
