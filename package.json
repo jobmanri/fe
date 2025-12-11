@@ -59,6 +59,9 @@
   },
   "packageManager": "yarn@4.12.0",
   "dependenciesMeta": {
+    "globrex": {
+      "unplugged": true
+    },
     "rollup": {
       "unplugged": true
     },

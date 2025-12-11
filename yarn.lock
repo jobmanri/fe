@@ -4854,6 +4854,8 @@ __metadata:
     vite: "npm:^6.0.0"
     vite-tsconfig-paths: "npm:^5.1.4"
   dependenciesMeta:
+    globrex:
+      unplugged: true
     rollup:
       unplugged: true
     storybook:
