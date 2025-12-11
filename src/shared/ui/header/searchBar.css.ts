@@ -1,5 +1,6 @@
-import { style } from "@vanilla-extract/css";
 import { colors } from "@/shared/styles/colors.css";
+
+import { style } from "@vanilla-extract/css";
 
 export const searchSection = style({
   position: "relative",

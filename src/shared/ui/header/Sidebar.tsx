@@ -1,11 +1,14 @@
 "use client";
 
+import { KeyboardEvent } from "react";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import * as styles from "@/shared/ui/header/sidebar.css";
+
 import { X } from "lucide-react";
+
 import { NAV_MENU_ITEMS } from "@/shared/ui/header";
-import { KeyboardEvent } from "react";
+import * as styles from "@/shared/ui/header/sidebar.css";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -33,10 +36,9 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         role="button"
         tabIndex={0}
         aria-label="메뉴 닫기"
-        aria-hidden={!isOpen}
       />
 
-      <aside className={sidebarClass} aria-hidden={!isOpen}>
+      <aside className={sidebarClass}>
         <div className={styles.sidebarHeader}>
           <button className={styles.closeButton} onClick={onClose} aria-label="닫기">
             <X color="black" />

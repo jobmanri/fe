@@ -1,3 +1,5 @@
+import { CompanyListSection } from "./_components/CompanyListSection";
+
 export default function Home() {
-  return <div>home</div>;
+  return <CompanyListSection />;
 }
