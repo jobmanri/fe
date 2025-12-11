@@ -1,69 +1,65 @@
 name: jobmanri-fe CI
 
 on:
-    pull_request:
-        branches: [main, develop]
-    push:
-        branches: [main, develop]
-    workflow_dispatch:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main, develop]
+  workflow_dispatch:
 
 concurrency:
-    group: ${{ github.workflow }}-${{ github.ref }}
-    cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
 
 jobs:
-    quality-check:
-        name: Check Lint & Type
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v6
+  quality-check:
+    name: Check Lint & Type
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Node.js & Dependencies
+        uses: ./.github/action/setup.yml
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v6
-              with:
-                  node-version: "20"
-                  cache: "yarn"
+      - name: Run ESLint
+        run: yarn lint
 
-            - name: Enable Corepack
-              run: corepack enable
+      - name: Run TypeScript type check
+        run: yarn type-check
 
-            - name: Install dependencies
-              run: yarn install --immutable
+  deploy-storybook:
+    name: Deploy Storybook
+    runs-on: ubuntu-latest
+    needs: quality-check
 
-            - name: Run ESLint
-              run: yarn lint
+    steps:
+      - name: Setup Node.js & Dependencies
+        uses: ./.github/action/setup.yml
 
-            - name: Run TypeScript type check
-              run: yarn type-check
+      - name: Build Storybook
+        run: yarn build-storybook
 
-    build:
-        name: Build
-        runs-on: ubuntu-latest
+      - name: Publish to Chromatic
+        run: yarn chromatic
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{env.CHROMATIC_PROJECT_TOKEN}}
 
-        needs: quality-check
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v6
+  build:
+    name: Build
+    runs-on: ubuntu-latest
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v6
-              with:
-                  node-version: "20"
-                  cache: "yarn"
+    needs: quality-check
+    steps:
+      - name: Setup Node.js & Dependencies
+        uses: ./.github/action/setup.yml
 
-            - name: Enable Corepack
-              run: corepack enable
+      - name: Build Next.js application
+        run: yarn build
 
-            - name: Install dependencies
-              run: yarn install --immutable
-
-            - name: Build Next.js application
-              run: yarn build
-
-            - name: Upload build artifacts
-              uses: actions/upload-artifact@v5
-              with:
-                  name: build-output
-                  path: .next/
-                  retention-days: 7
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v5
+        with:
+          name: build-output
+          path: .next/
+          retention-days: 7
