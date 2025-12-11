@@ -1,0 +1,19 @@
+name: "Setup Node.js & Dependencies"
+description: "Setup Node.js, enable Corepack, and install dependencies"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: "20"
+        cache: "yarn"
+
+    - name: Enable Corepack
+      shell: bash
+      run: corepack enable
+
+    - name: Install dependencies
+      shell: bash
+      run: yarn install --immutable
