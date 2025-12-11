@@ -4853,13 +4853,6 @@ __metadata:
     typescript-eslint: "npm:^8.48.0"
     vite: "npm:^7.0.0"
     vite-tsconfig-paths: "npm:^5.1.4"
-  dependenciesMeta:
-    rollup:
-      unplugged: true
-    storybook:
-      unplugged: true
-    vite:
-      unplugged: true
   languageName: unknown
   linkType: soft
 
