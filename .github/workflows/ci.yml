@@ -31,25 +31,25 @@ jobs:
       - name: Run TypeScript type check
         run: yarn type-check
 
-  deploy-storybook:
-    name: Deploy Storybook
-    runs-on: ubuntu-latest
-    needs: quality-check
+  # deploy-storybook:
+  #   name: Deploy Storybook
+  #   runs-on: ubuntu-latest
+  #   needs: quality-check
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v6
 
-      - name: Setup Node.js & Dependencies
-        uses: ./.github/actions/setup
+  #     - name: Setup Node.js & Dependencies
+  #       uses: ./.github/actions/setup
 
-      - name: Build Storybook
-        run: yarn build-storybook
+  #     - name: Build Storybook
+  #       run: yarn build-storybook
 
-      - name: Publish to Chromatic
-        run: yarn chromatic
-        env:
-          CHROMATIC_PROJECT_TOKEN: ${{env.CHROMATIC_PROJECT_TOKEN}}
+  #     - name: Publish to Chromatic
+  #       run: yarn chromatic
+  #       env:
+  #         CHROMATIC_PROJECT_TOKEN: ${{env.CHROMATIC_PROJECT_TOKEN}}
 
   build:
     name: Build
