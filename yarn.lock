@@ -5083,6 +5083,7 @@ __metadata:
     typescript: "npm:^5"
     typescript-eslint: "npm:^8.48.0"
     vite: "npm:^5.4.11"
+    vite-tsconfig-paths: "npm:^5.1.4"
   languageName: unknown
   linkType: soft
 
