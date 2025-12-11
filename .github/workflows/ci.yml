@@ -19,6 +19,9 @@ jobs:
     name: Check Lint & Type
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
       - name: Setup Node.js & Dependencies
         uses: ./.github/actions/setup
 
@@ -34,6 +37,9 @@ jobs:
     needs: quality-check
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
       - name: Setup Node.js & Dependencies
         uses: ./.github/actions/setup
 
@@ -51,6 +57,9 @@ jobs:
 
     needs: quality-check
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
       - name: Setup Node.js & Dependencies
         uses: ./.github/actions/setup
 
