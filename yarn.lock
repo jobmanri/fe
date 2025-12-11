@@ -4847,6 +4847,7 @@ __metadata:
     prettier: "npm:^3.7.3"
     react: "npm:^19.2.1"
     react-dom: "npm:^19.2.1"
+    rollup: "npm:^4.53.3"
     storybook: "npm:^9.1.16"
     typescript: "npm:^5"
     typescript-eslint: "npm:^8.48.0"
@@ -6004,7 +6005,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^4.43.0":
+"rollup@npm:^4.43.0, rollup@npm:^4.53.3":
   version: 4.53.3
   resolution: "rollup@npm:4.53.3"
   dependencies:
