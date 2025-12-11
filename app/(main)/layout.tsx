@@ -1,4 +1,5 @@
 import { Header } from "@/shared/ui/header";
+
 import * as styles from "./layout.css";
 
 export default function MainLayout({
