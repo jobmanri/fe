@@ -4860,6 +4860,8 @@ __metadata:
       unplugged: true
     vite:
       unplugged: true
+    vite-tsconfig-paths:
+      unplugged: true
   languageName: unknown
   linkType: soft
 

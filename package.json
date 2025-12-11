@@ -67,6 +67,9 @@
     },
     "vite": {
       "unplugged": true
+    },
+    "vite-tsconfig-paths": {
+      "unplugged": true
     }
   }
 }
