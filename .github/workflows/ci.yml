@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup Node.js & Dependencies
-        uses: ./.github/action/setup.yml
+        uses: ./.github/actions/setup
 
       - name: Run ESLint
         run: yarn lint
@@ -35,7 +35,7 @@ jobs:
 
     steps:
       - name: Setup Node.js & Dependencies
-        uses: ./.github/action/setup.yml
+        uses: ./.github/actions/setup
 
       - name: Build Storybook
         run: yarn build-storybook
@@ -52,7 +52,7 @@ jobs:
     needs: quality-check
     steps:
       - name: Setup Node.js & Dependencies
-        uses: ./.github/action/setup.yml
+        uses: ./.github/actions/setup
 
       - name: Build Next.js application
         run: yarn build
