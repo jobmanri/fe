@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from "react";
+
 import Link from "next/link";
+
 import { Menu } from "lucide-react";
-import * as styles from "@/shared/ui/header/header.css";
+
 import { SearchBar, Sidebar, NavigationMenu } from "@/shared/ui/header";
+import * as styles from "@/shared/ui/header/header.css";
 
 export function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

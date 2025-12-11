@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import * as styles from "@/shared/ui/header/navigationMenu.css";
+
 import { NAV_MENU_ITEMS } from "@/shared/ui/header";
+import * as styles from "@/shared/ui/header/navigationMenu.css";
 
 export function NavigationMenu() {
   const pathname = usePathname();
