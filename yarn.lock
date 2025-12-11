@@ -4850,7 +4850,7 @@ __metadata:
     storybook: "npm:^9.1.16"
     typescript: "npm:^5"
     typescript-eslint: "npm:^8.48.0"
-    vite: "npm:^7"
+    vite: "npm:^7.0.0"
     vite-tsconfig-paths: "npm:^5.1.4"
   languageName: unknown
   linkType: soft
@@ -7055,7 +7055,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^5.0.0 || ^6.0.0 || ^7.0.0, vite@npm:^5.0.0 || ^6.0.0 || ^7.0.0-0, vite@npm:^7":
+"vite@npm:^5.0.0 || ^6.0.0 || ^7.0.0, vite@npm:^5.0.0 || ^6.0.0 || ^7.0.0-0, vite@npm:^7.0.0":
   version: 7.2.7
   resolution: "vite@npm:7.2.7"
   dependencies:
