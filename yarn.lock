@@ -1950,6 +1950,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/globrex@npm:^0":
+  version: 0.1.4
+  resolution: "@types/globrex@npm:0.1.4"
+  checksum: 10c0/e5c6f13b942b2b6de28e7a64fc4e5c5113d04ff2af6fa8cc744c7ec8e7601ce3a3b69f9be087936dbadf9f6021f31089f224bbc7b480c47d4a1f69bfe560e915
+  languageName: node
+  linkType: hard
+
 "@types/json-schema@npm:^7.0.15":
   version: 7.0.15
   resolution: "@types/json-schema@npm:7.0.15"
@@ -5059,6 +5066,7 @@ __metadata:
     "@tanstack/react-query": "npm:^5.90.12"
     "@trivago/prettier-plugin-sort-imports": "npm:^6.0.0"
     "@types/eslint-plugin-jsx-a11y": "npm:^6"
+    "@types/globrex": "npm:^0"
     "@types/node": "npm:^20"
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"
@@ -5074,6 +5082,7 @@ __metadata:
     eslint-plugin-react-hooks: "npm:^7.0.1"
     eslint-plugin-storybook: "npm:^9.1.16"
     globals: "npm:^16.5.0"
+    globrex: "npm:^0.1.2"
     lucide-react: "npm:^0.555.0"
     next: "npm:15.5.7"
     prettier: "npm:^3.7.3"
