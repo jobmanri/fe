@@ -1,5 +1,6 @@
-import { style } from "@vanilla-extract/css";
 import { colors } from "@/shared/styles/colors.css";
+
+import { style } from "@vanilla-extract/css";
 
 const transitionTiming = "cubic-bezier(0.32, 0.725, 0, 1)";
 
