@@ -40,8 +40,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
-      - name: Setup Node.js & Dependencies
-        uses: ./.github/actions/setup
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "20"
+          cache: "yarn"
+
+      - name: Enable Corepack
+        shell: bash
+        run: corepack enable
+
+      - name: Install dependencies (Force node-modules)
+        shell: bash
+        run: yarn install --immutable --mode=node-modules
+        env:
+          YARN_NODE_LINKER: node-modules
 
       - name: Build Storybook
         run: yarn build-storybook
