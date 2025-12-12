@@ -6,7 +6,6 @@
     "clean": "rm -rf yarn.lock .yarn/cache .yarn/unplugged .pnp.* node_modules",
     "doctor": "yarn dlx @yarnpkg/doctor",
     "setup": "yarn dlx @yarnpkg/sdks vscode",
-    "postinstall": "yarn setup",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
