@@ -6,5 +6,5 @@ export const container = style({
   backgroundColor: "#ffffff",
   border: "1px solid rgba(0, 0, 0, 0.10)",
   borderRadius: "24px",
-  padding: "40px",
+  padding: "30px",
 });
