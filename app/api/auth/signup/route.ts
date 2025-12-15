@@ -3,15 +3,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { HTTPError } from "ky";
 
 import { apiServer } from "@/shared/lib/apiServer";
+import { BaseResponse } from "@/shared/types/api";
 
-interface SignupResponse {
-  status: string;
-  message: string;
-  data: {
-    accessToken: string;
-    refreshToken: string;
-  };
-}
+export type SignupResponse = BaseResponse<{
+  accessToken: string;
+  refreshToken: string;
+}>;
 
 export async function POST(req: NextRequest) {
   try {
