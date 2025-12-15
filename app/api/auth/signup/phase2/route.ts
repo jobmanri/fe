@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     if (error instanceof HTTPError) {
       const status = error.response.status;
-      const errorData = await error.response.json().catch(() => ({} as any));
+      const errorData = await error.response.json().catch(() => ({} as Record<string, unknown>));
       return NextResponse.json(
         { message: errorData.message || '회원가입 2단계 실패' },
         { status }
