@@ -5,6 +5,8 @@ import { HTTPError } from "ky";
 import { apiServer } from "@/shared/lib/apiServer";
 import { BaseResponse } from "@/shared/types/api";
 
+import { ACCESS_TOKEN_MAX_AGE, REFRESH_TOKEN_MAX_AGE } from "../constants";
+
 export type RefreshSuccessResponse = BaseResponse<{
   accessToken: string;
   refreshToken?: string;
@@ -41,7 +43,7 @@ export async function POST(req: NextRequest) {
       secure: isProd,
       sameSite: "lax",
       path: "/",
-      maxAge: 60 * 15, // TODO: 백엔드 만료와 맞추기
+      maxAge: ACCESS_TOKEN_MAX_AGE,
     });
 
     if (newRefreshToken) {
@@ -50,7 +52,7 @@ export async function POST(req: NextRequest) {
         secure: isProd,
         sameSite: "lax",
         path: "/",
-        maxAge: 60 * 60 * 24 * 14, // TODO: 백엔드 만료와 맞추기
+        maxAge: REFRESH_TOKEN_MAX_AGE,
       });
     }
 

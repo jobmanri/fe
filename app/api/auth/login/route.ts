@@ -5,6 +5,8 @@ import { HTTPError } from "ky";
 import { apiServer } from "@/shared/lib/apiServer";
 import { BaseResponse } from "@/shared/types/api";
 
+import { ACCESS_TOKEN_MAX_AGE, REFRESH_TOKEN_MAX_AGE } from "../constants";
+
 export type LoginSuccessResponse = BaseResponse<{
   accessToken: string;
   refreshToken: string;
@@ -31,7 +33,7 @@ export async function POST(req: NextRequest) {
       secure: isProd,
       sameSite: "lax",
       path: "/",
-      maxAge: 60 * 15, // TODO: 15분 (백엔드와 동일하게)
+      maxAge: ACCESS_TOKEN_MAX_AGE,
     });
 
     res.cookies.set("refreshToken", refreshToken, {
@@ -39,7 +41,7 @@ export async function POST(req: NextRequest) {
       secure: isProd,
       sameSite: "lax",
       path: "/",
-      maxAge: 60 * 60 * 24 * 14, // TODO: 14일 (백엔드와 동일하게)
+      maxAge: REFRESH_TOKEN_MAX_AGE,
     });
 
     return res;
