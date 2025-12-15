@@ -5,11 +5,6 @@ import { NextResponse } from "next/server";
 const PUBLIC_ONLY = ["/login", "/signup"];
 const PROTECTED_PREFIXES = ["/mypage"];
 
-const MIDDLEWARE_MATCHER = [
-  ...PUBLIC_ONLY,
-  ...PROTECTED_PREFIXES.map((prefix) => `${prefix}/:path*`),
-];
-
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -33,5 +28,5 @@ export function middleware(request: NextRequest) {
 
 // TODO: 추후 추가 될 예정, matcher는 "미들웨어가 실행될 경로"만 최소로 걸기
 export const config = {
-  matcher: MIDDLEWARE_MATCHER,
+  matcher: ["/login", "/signup", "/mypage/:path*"],
 };
