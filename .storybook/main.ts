@@ -6,11 +6,11 @@ import type { StorybookConfig } from "@storybook/nextjs-vite";
 const require = createRequire(import.meta.url);
 
 const config: StorybookConfig = {
-  stories: ["../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
-  addons: [
-    "@chromatic-com/storybook",
-    "@storybook/addon-docs",
+  stories: [
+    "../src/**/*.mdx",
+    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
+  addons: ["@chromatic-com/storybook", "@storybook/addon-docs"],
   framework: "@storybook/nextjs-vite",
   staticDirs: ["../public"],
 
