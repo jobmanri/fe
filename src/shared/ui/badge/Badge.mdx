@@ -1,0 +1,70 @@
+import * as BadgeStories from "./Badge.stories";
+import {
+  Meta,
+  Canvas,
+  Controls,
+  Story,
+  Description,
+  ArgTypes,
+  Source,
+} from "@storybook/addon-docs/blocks";
+
+<Meta of={BadgeStories} />
+
+# Badge
+
+상태나 카테고리를 나타내는 작은 라벨 컴포넌트입니다.
+
+<Canvas of={BadgeStories.Default} />
+
+## Props
+
+<Controls />
+
+## Examples
+
+### Variants
+
+`Badge` 컴포넌트는 5가지 스타일(`primary`, `secondary`, `success`, `danger`,`warning`)을 지원합니다.
+
+<Canvas of={BadgeStories.Variants} />
+
+<Source
+  language="tsx"
+  code={`
+    <Badge variant="primary">primary</Badge>
+    <Badge variant="secondary">secondary</Badge>
+    <Badge variant="success">success</Badge>
+    <Badge variant="danger">danger</Badge>
+    <Badge variant="warning">warning</Badge>
+  `}
+/>
+
+<br />
+
+### Sizes
+
+`Badge` 컴포넌트는 3가지 크기(`sm`, `md`, `lg`)를 지원합니다.
+
+<Canvas of={BadgeStories.Sizes} />
+
+<Source
+  language="tsx"
+  code={`
+    <Badge size="small">Small</Badge>
+    <Badge size="medium">Medium</Badge>
+    <Badge size="large">Large</Badge>
+  `}
+/>
+
+<br />
+
+## 사용 가이드 (Usage)
+
+`children` prop을 통해 뱃지 텍스트를 전달합니다.
+
+```tsx
+<Badge variant="primary" size="medium">
+  뱃지 텍스트
+</Badge>
+```
