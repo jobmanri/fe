@@ -2,7 +2,7 @@
     "StoryBook": {
         "prefix": ["!sb", "!storybook"],
         "body": [
-            "import type { Meta, StoryObj } from '@storybook/react-vite';\n",
+            "import type { Meta, StoryObj } from '@storybook/nextjs-vite';\n",
 
             "const meta: Meta<typeof ${1:Component}> = {",
             "    component: ${1:Component},",
