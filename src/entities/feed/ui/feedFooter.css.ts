@@ -26,7 +26,7 @@ export const statsContainer = style({
   },
 });
 
-export const likeButton = style({
+export const likeContainer = style({
   display: "flex",
   alignItems: "center",
   gap: "4px",
@@ -35,6 +35,10 @@ export const likeButton = style({
   backgroundColor: "transparent",
   fontSize: "14px",
   color: "#64748B",
+});
+
+export const likeButton = style({
+  cursor: "pointer",
 });
 
 export const commentCount = style({

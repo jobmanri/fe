@@ -10,17 +10,19 @@ export const FeedFooter = () => {
   return (
     <footer className={styles.footerContainer}>
       <div className={styles.statsContainer}>
-        <div className={styles.likeButton}>
+        <button className={styles.likeContainer} aria-label={isLiked ? "좋아요 취소" : "좋아요"}>
           <Heart
-            onClick={() => setIsLiked(!isLiked)}
             size={16}
+            className={styles.likeButton}
+            onClick={() => setIsLiked(!isLiked)}
             fill={isLiked ? "#EF4444" : "none"}
             stroke={isLiked ? "none" : "#64748B"}
-            className={`${styles.heartIcon} ${isLiked ? styles.heartIconLiked : ""}`}
+            aria-hidden="true"
           />
+          {/** TODO - 좋아요,댓글 수 props */}
           <span>좋아요</span>
-          <span>112</span>
-        </div>
+          <span aria-label={`현재 좋아요 개수 ${112}개`}>112</span>
+        </button>
         <div className={styles.commentCount}>
           <MessageCircle size={16} />
           <span>댓글</span>
